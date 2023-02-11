@@ -1,0 +1,73 @@
+query getAllUsers{
+  users{
+    _id
+    name
+    phone
+    email
+    username
+  }
+}
+
+---------------------------------
+
+query getAllQuotes{
+  quotes{
+    name
+    by
+  }
+}
+
+-------------------------------------
+
+query getUserById($userId:ID!){
+  user(_id:$userId){
+    name
+    username
+    email
+    phone
+    quotes{
+      name
+    }
+  }
+}
+
+-------------------------------------
+
+query getQuotesByUser($quoteby:ID!){
+  singleuserquote(by:$quoteby){
+    name
+  }
+}
+
+
+-------------------------------------
+
+
+mutation createUser($userNew:UserInput!){
+user:signupUser(userNew:$userNew){
+    _id
+    fullname,
+    email,
+    
+  }
+}
+
+{
+  "userNew": {"fullname":"Ashish singh", "email":"ashish@gmail.com","password":"12345"}
+}
+
+-------------------------------------
+
+mutation signinUser($userSignIn:UserSignInInput!){
+user:signinUser(userSignIn:$userSignIn){
+    token
+    
+  }
+}
+
+{
+  "userSignIn": {
+    "email": "ashish@gmail.com",
+    "password": "12345"
+  }
+}
