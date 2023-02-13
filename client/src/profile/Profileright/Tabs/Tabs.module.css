@@ -1,0 +1,32 @@
+.studentMCQ {
+  width: 100%;
+}
+
+.mcqTop {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.mcqTopItem {
+  display: grid;
+  place-items: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 17px;
+  /* identical to box height */
+  width: 14%;
+  color: rgba(18, 18, 18, 0.5);
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.active {
+  border-bottom: 2px solid #121212;
+  color: #121212;
+  font-weight: 500;
+  transition: all 0.5s ease;
+}

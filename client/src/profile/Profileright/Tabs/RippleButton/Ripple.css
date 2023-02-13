@@ -1,0 +1,43 @@
+.ripple_btn {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1vw;
+  line-height: 17px;
+  padding: 0.75vw 2vw;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.ripple_btn > .content {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ripple_btn > .ripple {
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  background-color: #eae4e4;
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  /* animation: ripple-effect 1s ease 1 forwards; */
+}
+
+/* @keyframes ripple-effect {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 500px;
+    height: 500px;
+    opacity: 0;
+  }
+} */

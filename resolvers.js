@@ -10,13 +10,13 @@ const Quote = mongoose.model("Quote");
 
 export const resolvers = {
   Query: {
-    users: () => users,
-    user: (_, { _id }) => users.find((user) => user._id === _id),
-    quotes: () => quotes,
-    singleuserquote: (_, { by }) => quotes.filter((quote) => quote.by === by),
+    users: async () => await User.find({}),
+    user: async (_, { _id }) => await User.findOne({ _id }), //users.find((user) => user._id === _id),
+    quotes: async () => await Quote.find({}).populate("by", "_id fullname"),
+    singleuserquote: async (_, { by }) => await Quote.find({ by }), //quotes.filter((quote) => quote.by === by),
   },
   User: {
-    quotes: (user) => quotes.filter((quote) => quote.by === user._id),
+    quotes: async (user) => await Quote.find({ by: user._id }), // quotes.filter((quote) => quote.by === user._id),
   },
 
   Mutation: {
@@ -71,6 +71,26 @@ export const resolvers = {
       await newQuote.save();
 
       return "Quote created successfully";
+    },
+    updateQuote: async (_, args) => {
+      const { _id } = args;
+      const { name } = args.quote;
+      const quote = await Quote.findByIdAndUpdate(_id, { name }, { new: true });
+      return "Quote updated successfully";
+    },
+    // updateQuote: async (_, { quoteId, userQuote }) => {
+    //   const { name } = userQuote.quote;
+    //   const quote = await Quote.findByIdAndUpdate(
+    //     quoteId,
+    //     { name },
+    //     { new: true }
+    //   );
+    //   return "Quote updated successfully";
+    // },
+    deleteQuote: async (_, { _id }) => {
+      await Quote.findByIdAndDelete(_id);
+
+      return "Quote deleted successfully";
     },
   },
 };

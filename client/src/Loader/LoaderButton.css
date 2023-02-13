@@ -1,0 +1,5 @@
+div[data-testid] {
+  padding: 0 !important;
+  margin-left: 2vw;
+  margin-top: -0.7vw;
+}

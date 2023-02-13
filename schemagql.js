@@ -4,7 +4,7 @@ const typeDef = gql`
   type Query {
     users: [User]
     user(_id: ID!): User
-    quotes: [Quote]
+    quotes: [QuoteWithName]
     singleuserquote(by: ID!): [Quote]
   }
 
@@ -22,6 +22,16 @@ const typeDef = gql`
     by: ID
   }
 
+  type QuoteWithName {
+    name: String
+    by: IdAndName
+  }
+
+  type IdAndName {
+    _id: String
+    fullname: String
+  }
+
   type Token {
     token: String
   }
@@ -30,6 +40,8 @@ const typeDef = gql`
     signupUser(userNew: UserInput!): User
     signinUser(userSignIn: UserSignInInput!): Token
     createQuote(name: String!): String
+    updateQuote(_id: String!, quote: QuoteInput): String
+    deleteQuote(_id: String!): String
   }
 
   input UserInput {
@@ -41,6 +53,10 @@ const typeDef = gql`
   input UserSignInInput {
     email: String!
     password: String!
+  }
+
+  input QuoteInput {
+    name: String!
   }
 `;
 

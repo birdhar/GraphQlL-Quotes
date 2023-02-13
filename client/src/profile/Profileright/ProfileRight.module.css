@@ -1,0 +1,14 @@
+.profilrRight {
+}
+
+.profilrRighttop {
+  background-color: #f0eeed;
+}
+
+.profilrRightbody {
+  padding: 1.55rem;
+  background-color: #fafafa;
+  min-height: calc(100vh - 6.5rem);
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAG0lEQVQYV2PcvHnzf19fX0YGPACvJEzfqCIGAC55BAqBlVXsAAAAAElFTkSuQmCC)
+    repeat;
+}

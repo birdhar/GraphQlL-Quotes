@@ -25,16 +25,18 @@ import "./models/Quote.js";
 import { resolvers } from "./resolvers.js";
 import jwt from "jsonwebtoken";
 
+const context = ({ req }) => {
+  const { authorization } = req.headers;
+  if (authorization) {
+    const { userId } = jwt.verify(authorization, JWT_SERCRET);
+    return { userId };
+  }
+};
+
 const server = new ApolloServer({
   typeDefs: typeDef,
   resolvers: resolvers,
-  context: ({ req }) => {
-    const { authorization } = req.headers;
-    if (authorization) {
-      const { userId } = jwt.verify(authorization, JWT_SERCRET);
-      return { userId };
-    }
-  },
+  context,
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
 });
 
